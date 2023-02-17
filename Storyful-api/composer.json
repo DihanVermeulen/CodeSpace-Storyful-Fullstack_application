@@ -1,0 +1,20 @@
+{
+    "name": "lenovo/b-crud-api",
+    "description": "basic rest api to perform CRUD operations to MySQL database",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "src/model",
+            "Data\\": "src/data",
+            "Config\\": "src/config"
+        }
+    },
+    "authors": [
+        {
+            "name": "JustinCodespace"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*"
+    }
+}
