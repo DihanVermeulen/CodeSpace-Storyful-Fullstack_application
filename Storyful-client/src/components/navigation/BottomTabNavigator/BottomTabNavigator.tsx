@@ -13,13 +13,28 @@ const BottomTabNavigator = () => {
 
   return (
     <nav className="bottomtabnavigator-container">
-      <div className="bottomtabnavigator-container-button-container">
+      <div
+        className="bottomtabnavigator-container-button-container"
+        onClick={() => {
+          handleTabClick(0);
+        }}
+      >
         <img src={homeIcon} />
       </div>
-      <div className="bottomtabnavigator-container-button-container">
+      <div
+        className="bottomtabnavigator-container-button-container"
+        onClick={() => {
+          handleTabClick(1);
+        }}
+      >
         <img src={bookIcon} />
       </div>
-      <div className="bottomtabnavigator-container-button-container">
+      <div
+        className="bottomtabnavigator-container-button-container"
+        onClick={() => {
+          handleTabClick(2);
+        }}
+      >
         <img src={profileIcon} />
       </div>
     </nav>
