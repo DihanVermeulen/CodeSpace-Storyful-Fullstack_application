@@ -1,5 +1,7 @@
 const BottomTabNavigator = () => {
-  return <div></div>;
+  return <nav>
+    
+  </nav>;
 };
 
 export default BottomTabNavigator;
