@@ -1,5 +1,13 @@
+// Root components are placed here.
+
+import RootHeader from "./components/layout/RootHeader";
+
 const Root = () => {
-  return <div></div>;
+  return (
+    <>
+      <RootHeader />
+    </>
+  );
 };
 
 export default Root;
