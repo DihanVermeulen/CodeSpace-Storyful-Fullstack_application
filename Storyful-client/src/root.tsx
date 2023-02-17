@@ -2,11 +2,13 @@
 
 import RootHeader from "./components/layout/RootHeader";
 import BottomTabNavigator from "./components/navigation/BottomTabNavigator";
+import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
     <>
       <RootHeader />
+      <Outlet />
       <BottomTabNavigator />
     </>
   );
