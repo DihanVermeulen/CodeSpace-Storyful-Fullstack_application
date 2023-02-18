@@ -21,6 +21,9 @@ const RootHeader = () => {
           />
         </svg>
       </div>
+      <div>
+        <div style={{width: 30, height: 30, backgroundColor: 'red', borderRadius: 100}}></div>
+      </div>
     </header>
   );
 };
