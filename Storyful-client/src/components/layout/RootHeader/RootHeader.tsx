@@ -1,6 +1,8 @@
+import "./RootHeader.css";
+
 const RootHeader = () => {
   return (
-    <header>
+    <header className="rootheader-container">
       <div>
         <svg
           width="40"
