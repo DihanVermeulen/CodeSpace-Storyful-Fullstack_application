@@ -3,7 +3,7 @@ import "./RootHeader.css";
 const RootHeader = () => {
   return (
     <header className="rootheader-container">
-      <div>
+      <div className="rootheader-container-item">
         <svg
           width="40"
           height="40"
@@ -22,7 +22,7 @@ const RootHeader = () => {
         </svg>
       </div>
       <div>
-        <div style={{width: 30, height: 30, backgroundColor: 'red', borderRadius: 100}}></div>
+        <div style={{width: 45, height: 45, backgroundColor: 'red', borderRadius: 100}}></div>
       </div>
     </header>
   );
