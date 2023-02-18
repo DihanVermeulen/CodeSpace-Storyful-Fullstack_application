@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./BottomTabNavigator.css";
+import { navigate } from "../../../utils/helperFunctions";
 import homeIcon from "./../../../assets/BottomTabNavigatorIcons/home-icon.svg";
 import bookIcon from "./../../../assets/BottomTabNavigatorIcons/book-icon.svg";
 import profileIcon from "./../../../assets/BottomTabNavigatorIcons/profile-icon.svg";
