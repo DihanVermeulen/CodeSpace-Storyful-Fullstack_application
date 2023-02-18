@@ -6,7 +6,6 @@
   width: 100vw;
   height: 70px;
   background-color: white;
-  border-bottom: 2px solid #ccc;
 }
 
 .bottomtabnavigator-container-button-container {
@@ -17,12 +16,18 @@
 
 .bottomtabnavigator-container-button-container.selected {
   color: #721CFF;
-  border-bottom: 2px solid #721CFF;
-  /* transition: border-bottom 0.2s ease-in-out; */
 }
 
 .bottomtabnavigator-container-button-container.selected svg path {
   stroke: #721CFF;
 }
 
+.indicator {
+  position: absolute;
+  bottom: 0;
+  width: 30px; /* adjust to match the width of your button */
+  height: 2px;
+  background-color: #721CFF;
+  transition: left 0.3s ease-out;
+}
 
