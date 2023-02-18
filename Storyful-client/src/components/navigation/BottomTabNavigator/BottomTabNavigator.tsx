@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./BottomTabNavigator.css";
-import { navigate } from "../../../utils/helperFunctions";
+import { useNavigate } from "react-router-dom";
 import homeIcon from "./../../../assets/BottomTabNavigatorIcons/home-icon.svg";
 import bookIcon from "./../../../assets/BottomTabNavigatorIcons/book-icon.svg";
 import profileIcon from "./../../../assets/BottomTabNavigatorIcons/profile-icon.svg";
@@ -9,23 +9,30 @@ const BottomTabNavigator = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [indicatorPosition, setIndicatorPosition] = useState<number | null>(null);
   const indicatorRef: any = useRef(null);
+  const containerRef: any = useRef(null);
+  const navigate = useNavigate();
 
   const handleTabClick = (tabIndex: number) => {
     setActiveTab(tabIndex);
+    const tabWidth = containerRef.current.offsetWidth; 
     const buttonWidth = indicatorRef.current.offsetWidth;
     const gridColumns = 3; // change this to match your grid
-    const columnWidth = window.screen.width / gridColumns;
+    const columnWidth = tabWidth / gridColumns;
     const columnMiddlePoint = columnWidth / 2 - buttonWidth / 2;
 
     switch (tabIndex) {
       case 0:
         setIndicatorPosition(columnMiddlePoint);
+        navigate('/');
         break;
       case 1:
         setIndicatorPosition(columnMiddlePoint + columnWidth);
+        navigate('library');
         break;
       case 2:
         setIndicatorPosition(columnMiddlePoint + columnWidth * 2);
+        navigate('profile');
+        break;
     }
   };
 
@@ -34,7 +41,7 @@ const BottomTabNavigator = () => {
   }, [])
 
   return (
-    <nav className="bottomtabnavigator-container">
+    <nav ref={containerRef} className="bottomtabnavigator-container">
       <div
         className={`bottomtabnavigator-container-button-container ${
           activeTab === 0 ? "selected" : ""
