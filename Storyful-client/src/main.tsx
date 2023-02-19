@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Root from "./root";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./routes/Home";
+import Home from "./routes/Home/Home";
 import Library from "./routes/Library";
 import Profile from "./routes/Profile";
 
