@@ -1,0 +1,13 @@
+.category-button {
+  display: flex;
+  border-radius: 20px;
+  background-color: #eeeeee;
+}
+
+.category-button div {
+    padding: 10px;
+}
+
+.category-button-title {
+    font-size: 14px;
+}
