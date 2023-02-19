@@ -6,6 +6,11 @@
 }
 
 .home-container {
-    padding: 20;
-    height: 100vh;
+  padding: 20;
+  height: 100vh;
+}
+
+.home-container-category-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
