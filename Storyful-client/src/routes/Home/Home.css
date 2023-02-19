@@ -1,0 +1,11 @@
+.home-category-heading {
+  font-size: 30;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 10;
+  margin-bottom: 10;
+}
+
+.home-container {
+    padding: 20;
+    height: 100vh;
+}
