@@ -4,7 +4,7 @@
   width: 100vw;
   background-image: linear-gradient(
       to bottom,
-      rgba(245, 246, 252, 0.52),
+      rgba(255, 255, 255, 0.4),
       rgba(255, 255, 255, 0)
     ),
     url(./../../assets/profile/bookshelf.png);
@@ -12,17 +12,47 @@
   background-repeat: no-repeat;
 }
 
-.element {
-  width: 100px;
-  height: 100px;
+.profile-image {
+  border: 5px solid #ffffff;
+  width: 180px;
+  height: 180px;
   background-color: blueviolet;
   border-radius: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -50px;
+  bottom: -90px;
 }
 
 .profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
+  color: #000000;
+}
+
+.profile-container-user-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.profile-container-user-information h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+.profile-container-user-stats {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 80%;
+}
+
+.profile-container-user-stats-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
