@@ -7,8 +7,8 @@ export const HorrorIcon: React.FC<Props> = ({ colour }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill={colour}
-      height="800px"
-      width="800px"
+      height="15px"
+      width="15px"
       version="1.1"
       id="Capa_1"
       viewBox="0 0 203.259 203.259"
