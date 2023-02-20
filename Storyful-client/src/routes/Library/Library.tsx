@@ -1,9 +1,11 @@
+import Searchbar from "../../components/layout/Searchbar/Searchbar";
 import "./Library.css";
 
 const Library = () => {
   return (
-    <section>
-      <h1>Libary</h1>
+    <section className="library-container">
+      <h1 className="library-heading">Library</h1>
+      <Searchbar />
     </section>
   );
 };
