@@ -1,0 +1,11 @@
+.library-container {
+    padding: 20px;
+}
+
+.library-heading {
+  font-size: 40px;
+}
+
+.separator {
+    border: 1px solid #BCBCBC;
+}
