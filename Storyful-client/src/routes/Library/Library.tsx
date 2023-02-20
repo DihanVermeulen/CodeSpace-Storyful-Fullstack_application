@@ -1,5 +1,11 @@
+import "./Library.css";
+
 const Library = () => {
-  return <div>library</div>;
+  return (
+    <section>
+      <h1>Libary</h1>
+    </section>
+  );
 };
 
 export default Library;
