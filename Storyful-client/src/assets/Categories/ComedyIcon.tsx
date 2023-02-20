@@ -1,8 +1,12 @@
-const ComedyIcon = ({color}:any) => {
+interface Props {
+  colour: string;
+}
+
+const ComedyIcon: React.FC<Props> = ({ colour }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill={color}
+      fill={colour}
       version="1.1"
       id="Capa_1"
       width="15px"
