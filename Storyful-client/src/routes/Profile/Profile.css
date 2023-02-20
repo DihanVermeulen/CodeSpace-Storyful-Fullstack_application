@@ -1,0 +1,28 @@
+.profile-top-section {
+  position: relative;
+  height: 30vh;
+  width: 100vw;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 246, 252, 0.52),
+      rgba(255, 255, 255, 0)
+    ),
+    url(./../../assets/profile/bookshelf.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.element {
+  width: 100px;
+  height: 100px;
+  background-color: blueviolet;
+  border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -50px;
+}
+
+.profile-container {
+  height: 100vh;
+}
