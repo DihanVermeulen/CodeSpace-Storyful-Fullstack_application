@@ -6,7 +6,6 @@ const Library = () => {
     <section className="library-container">
       <h1 className="library-heading">Library</h1>
       <Searchbar />
-      <div style={{marginTop: 10, marginBottom: 20}} className="separator"/>
     </section>
   );
 };
