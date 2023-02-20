@@ -5,9 +5,12 @@
 }
 
 .category-button div {
-    padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .category-button-title {
-    font-size: 14px;
+  font-size: 14px;
 }
