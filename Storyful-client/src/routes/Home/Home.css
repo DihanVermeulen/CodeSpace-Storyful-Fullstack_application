@@ -13,5 +13,5 @@
 .home-container-category-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 5px;
+  gap: 20px;
 }
