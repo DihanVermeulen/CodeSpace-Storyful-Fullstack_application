@@ -12,6 +12,7 @@ $container = new Container;
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
+$app->addErrorMiddleware(true, true, true);
 
 $app->get('/', function (Request $request, Response $response) {
     $response->getBody()->write('Hello World!');
