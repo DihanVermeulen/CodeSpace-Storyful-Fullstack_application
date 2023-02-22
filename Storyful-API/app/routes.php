@@ -2,14 +2,11 @@
 
 use Slim\App;
 use App\Http\Controllers\UserController;
-use Psr\http\Message\ResponseInterface as Response;
-use Psr\http\Message\RequestInterface as Request;
+use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function(App $app) {
-    // $app->get('/users', [UserController::class, 'findAll']);
-
-    $app->group('/users', function() use ($app) {
-        $app->get('', [UserController::class, 'findAll']);
+    $app->group('/users', function (Group $group) {
+        $group->get('', [UserController::class, 'findAll']);
     });
 }
 
