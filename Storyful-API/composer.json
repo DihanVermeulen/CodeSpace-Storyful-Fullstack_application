@@ -3,10 +3,10 @@
     "slim/slim": "^4.11",
     "slim/psr7": "^1.6",
     "php-di/php-di": "^7.0",
-    "php": "^7.4",
+    "php": "^8.1",
     "ext-curl": "*",
     "ext-json": "*",
-    "php-di/slim-bridge": "^3.0"
+    "php-di/slim-bridge": "^3.3"
   },
   "scripts": {
     "start": "php -S localhost:8080 -t public"
