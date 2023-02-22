@@ -1,15 +1,22 @@
 <?php
 
 use DI\Container;
-use Slim\Factory\AppFactory;
+// use Slim\Factory\AppFactory;
+use App\Models\User;
+use \DI\Bridge\Slim\Bridge as SlimAppFactory;
 
 require __DIR__ . './../vendor/autoload.php';
 
 $container = new Container;
 
-AppFactory::setContainer($container);
+// AppFactory::setContainer($container);
 
-$app = AppFactory::create();
+$user = new User();
+die();
+
+// $app = AppFactory::create();
+
+$app = \DI\Bridge\Slim\Bridge::create($container);
 
 $middleware = require __DIR__ . './../app/middleware.php';
 $middleware($app);
