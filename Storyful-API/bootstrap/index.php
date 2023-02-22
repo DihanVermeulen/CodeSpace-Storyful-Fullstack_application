@@ -9,14 +9,7 @@ require __DIR__ . './../vendor/autoload.php';
 
 $container = new Container;
 
-// AppFactory::setContainer($container);
-
-$user = new User();
-die();
-
-// $app = AppFactory::create();
-
-$app = \DI\Bridge\Slim\Bridge::create($container);
+$app = SlimAppFactory::create($container);
 
 $middleware = require __DIR__ . './../app/middleware.php';
 $middleware($app);
