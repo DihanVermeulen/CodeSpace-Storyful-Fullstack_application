@@ -9,4 +9,13 @@ class UserController
     {
         $this->container = $container;
     }
+
+    public function findAll(Request $request, Response $response)
+    {
+        $db = $this->container->get('db');
+        $users = $db->query('SELECT * FROM users');
+        $rows = $users->fetchAll();
+        $response->getBody()->write(json_encode($rows));
+        return $response->withHeader('Content-Type', 'application/json');
+    }
 }
