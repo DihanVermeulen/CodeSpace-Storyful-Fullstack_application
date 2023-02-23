@@ -10,8 +10,8 @@
   },
   "scripts": {
     "start": [
-      "php -S localhost:8080 -t public",
-      "Composer\\Config::disableProcessTimeout"
+      "Composer\\Config::disableProcessTimeout",
+      "php -S localhost:8080 -t public"
     ]
   },
   "autoload": {
