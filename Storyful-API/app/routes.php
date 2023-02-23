@@ -7,8 +7,8 @@ use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 return function(App $app) {
     $app->group('/users', function (Group $group) {
         $group->get('', [UserController::class, 'findAll']);
-        $group->get('/{id}', [UserController::class, 'findUserByID']);
-        $group->get('/{email}', [UserController::class, 'findUserByEmail']);
+        $group->get('/{id}', [UserController::class, 'findUserByID']); 
+        $group->post('', [UserController::class, 'createUser']); 
     });
 }
 
