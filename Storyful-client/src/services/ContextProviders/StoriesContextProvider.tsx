@@ -1,10 +1,11 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useMemo, useState } from "react";
+import { IStories, storiesContextType } from "../../@types/stories";
 import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
 
-export const StoryDataContext = createContext<any>(null);
+export const StoryDataContext = createContext<storiesContextType | null>(null);
 
 const StoriesContextProvider = ({ children }: any) => {
-  const [stories, setStories] = useState<any>();
+  const [stories, setStories] = useState<IStories[]>([]);
 
   const fetchStories = async () => {
     console.log("Fetching data...");
@@ -13,8 +14,10 @@ const StoriesContextProvider = ({ children }: any) => {
     setStories(jsonData);
   };
 
+  const memoizedValue = useMemo(() => ({ stories, fetchStories }), [stories]);
+
   return (
-    <StoryDataContext.Provider value={{ stories, fetchStories }}>
+    <StoryDataContext.Provider value={memoizedValue}>
       {children}
     </StoryDataContext.Provider>
   );
