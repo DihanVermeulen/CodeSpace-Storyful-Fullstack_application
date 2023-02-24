@@ -5,30 +5,15 @@ import ComedyIcon from "../../assets/Categories/ComedyIcon";
 import { HorrorIcon } from "../../assets/Categories/HorrorIcon";
 import RomanceIcon from "../../assets/Categories/RomanceIcon";
 import ActionIcon from "../../assets/Categories/ActionIcon";
-import axios from "axios";
-import bookshelf from "../../assets/profile/bookshelf.png";
-import { useOutletContext } from "react-router-dom";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
+import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 
-interface Props {}
-
-const Home: React.FC<Props> = (): ReactElement<any> => {
-  const [stories, setStories] = useState<any>(null);
+const Home: React.FC = (): ReactElement => {
+  const { stories, fetchStories } = useContext(StoryDataContext);
 
   useEffect(() => {
-    const fetchStories = async () => {
-      const jsonData = await fetchAllStoriesFromDatabaseTest();
-      console.log("json data: ", jsonData);
-      setStories(jsonData);
-    };
     fetchStories();
-    // fetchAllStoriesFromDatabase()
-    //   .then((response: any) => {
-    //     console.log(response);
-    //     setStories(response.data);
-    //   })
-    //   .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -44,11 +29,26 @@ const Home: React.FC<Props> = (): ReactElement<any> => {
           icon={<RomanceIcon colour="#000000" />}
         />
       </article>
-      <section className="home-container-stories-container">
-        {stories &&
-          stories.map((story: any) => {
-            return <div>{story.title}</div>;
-          })}
+      <section
+        style={{ marginTop: 20 }}
+        className="home-container-stories-container"
+      >
+        {stories ? (
+          stories.map((story: any, key: any) => {
+            return (
+              <article
+                className="home-container-stories-container-item"
+                key={key}
+              >
+                <img src={story.cover_location} />
+                <h3>{story.title}</h3>
+                <p>{story.author}</p>
+              </article>
+            );
+          })
+        ) : (
+          <p>loading...</p>
+        )}
       </section>
     </section>
   );
