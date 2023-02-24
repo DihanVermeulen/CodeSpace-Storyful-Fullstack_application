@@ -1,5 +1,4 @@
 import { useState } from "react";
-import BookShelfImage from "./../../assets/profile/bookshelf.png";
 import "./Profile.css";
 
 const Profile = () => {
