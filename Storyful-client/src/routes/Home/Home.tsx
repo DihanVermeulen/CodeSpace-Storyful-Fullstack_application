@@ -2,15 +2,15 @@ import CategoryButton from "../../components/form/CategoryButton/CategoryButton"
 import Searchbar from "../../components/form/Searchbar/Searchbar";
 import "./Home.css";
 import ComedyIcon from "../../assets/Categories/ComedyIcon";
-import { HorrorIcon } from "../../assets/Categories/HorrorIcon";
+import HorrorIcon from "../../assets/Categories/HorrorIcon";
 import RomanceIcon from "../../assets/Categories/RomanceIcon";
 import ActionIcon from "../../assets/Categories/ActionIcon";
 import { ReactElement, useContext, useEffect, useState } from "react";
-import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
+import { storiesContextType } from "../../@types/stories";
 
 const Home: React.FC = (): ReactElement => {
-  const { stories, fetchStories } = useContext(StoryDataContext);
+  const { stories, fetchStories } = useContext(StoryDataContext) as storiesContextType;
 
   useEffect(() => {
     fetchStories();
