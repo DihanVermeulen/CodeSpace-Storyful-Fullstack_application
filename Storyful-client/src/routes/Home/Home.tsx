@@ -7,8 +7,30 @@ import RomanceIcon from "../../assets/Categories/RomanceIcon";
 import ActionIcon from "../../assets/Categories/ActionIcon";
 import axios from "axios";
 import bookshelf from "../../assets/profile/bookshelf.png";
+import { useOutletContext } from "react-router-dom";
+import { ReactElement, useEffect, useState } from "react";
+import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
 
-const Home: React.FC = () => {
+interface Props {}
+
+const Home: React.FC<Props> = (): ReactElement<any> => {
+  const [stories, setStories] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      const jsonData = await fetchAllStoriesFromDatabaseTest();
+      console.log("json data: ", jsonData);
+      setStories(jsonData);
+    };
+    fetchStories();
+    // fetchAllStoriesFromDatabase()
+    //   .then((response: any) => {
+    //     console.log(response);
+    //     setStories(response.data);
+    //   })
+    //   .catch((error) => console.log(error));
+  }, []);
+
   return (
     <section className="home-container">
       <Searchbar />
@@ -22,6 +44,12 @@ const Home: React.FC = () => {
           icon={<RomanceIcon colour="#000000" />}
         />
       </article>
+      <section className="home-container-stories-container">
+        {stories &&
+          stories.map((story: any) => {
+            return <div>{story.title}</div>;
+          })}
+      </section>
     </section>
   );
 };
