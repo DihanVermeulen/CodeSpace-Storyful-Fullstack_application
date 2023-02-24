@@ -1,4 +1,4 @@
-import axios from "../axios/axios";
+import axios from "../services/axios/axios";
 
 export const fetchAllStoriesFromDatabase = async () => {
   try {
