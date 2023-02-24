@@ -1,5 +1,5 @@
-import CategoryButton from "../../components/layout/CategoryButton/CategoryButton";
-import Searchbar from "../../components/layout/Searchbar/Searchbar";
+import CategoryButton from "../../components/form/CategoryButton/CategoryButton";
+import Searchbar from "../../components/form/Searchbar/Searchbar";
 import "./Home.css";
 import ComedyIcon from "../../assets/Categories/ComedyIcon";
 import { HorrorIcon } from "../../assets/Categories/HorrorIcon";

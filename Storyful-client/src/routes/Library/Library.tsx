@@ -1,4 +1,4 @@
-import Searchbar from "../../components/layout/Searchbar/Searchbar";
+import Searchbar from "../../components/form/Searchbar/Searchbar";
 import "./Library.css";
 
 const Library = () => (
