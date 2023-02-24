@@ -28,7 +28,7 @@ const Root = () => {
   return (
     <>
       <RootHeader />
-      <Outlet context={stories} />
+      <Outlet context={[stories, setStories]} />
       <BottomTabNavigator />
     </>
   );
