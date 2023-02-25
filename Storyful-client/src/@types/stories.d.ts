@@ -8,5 +8,4 @@ export interface IStories {
 
 export type storiesContextType = {
   stories: IStories[];
-  fetchStories: () => void;
 };
