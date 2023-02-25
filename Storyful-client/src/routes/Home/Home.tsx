@@ -5,7 +5,13 @@ import ComedyIcon from "../../assets/Categories/ComedyIcon";
 import HorrorIcon from "../../assets/Categories/HorrorIcon";
 import RomanceIcon from "../../assets/Categories/RomanceIcon";
 import ActionIcon from "../../assets/Categories/ActionIcon";
-import { ReactElement, useContext, useEffect, useState } from "react";
+import {
+  ReactElement,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 import { storiesContextType } from "../../@types/stories";
 
@@ -30,18 +36,16 @@ const Home: React.FC = (): ReactElement => {
         className="home-container-stories-container"
       >
         {stories ? (
-          stories.map((story: any, key: any) => {
-            return (
-              <article
-                className="home-container-stories-container-item"
-                key={key}
-              >
-                <img src={story.cover_location} />
-                <h3>{story.title}</h3>
-                <p>{story.author}</p>
-              </article>
-            );
-          })
+          stories.map((story: any, key: any) => (
+            <article
+              className="home-container-stories-container-item"
+              key={key}
+            >
+              <img src={story.cover_location} />
+              <h3>{story.title}</h3>
+              <p>{story.author}</p>
+            </article>
+          ))
         ) : (
           <p>loading...</p>
         )}

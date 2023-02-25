@@ -1,5 +1,5 @@
 import axios from "../services/axios/axios";
-import StoriesTestData from '../data/stories.json';
+import StoriesTestData from "../data/stories.json";
 
 export const fetchAllStoriesFromDatabase = async () => {
   try {

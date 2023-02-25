@@ -10,8 +10,7 @@ describe("fetchAllStoriesFromDatabaseTest", () => {
         title: "Test title",
         author: "Test author",
         genre: "Test genre",
-        cover_location:
-          "https://example.com/example.jpg",
+        cover_location: "https://example.com/example.jpg",
       },
     ];
     const mockJsonPromise = Promise.resolve(mockResponse);

@@ -7,16 +7,14 @@ import BottomTabNavigator from "./components/navigation/BottomTabNavigator/Botto
 import { fetchAllStoriesFromDatabase } from "./utils/helpers";
 import StoriesContextProvider from "./services/ContextProviders/StoriesContextProvider";
 
-const Root = () => {
-  return (
-    <>
-      <RootHeader />
-      <StoriesContextProvider>
-        <Outlet />
-      </StoriesContextProvider>
-      <BottomTabNavigator />
-    </>
-  );
-};
+const Root = () => (
+  <>
+    <RootHeader />
+    <StoriesContextProvider>
+      <Outlet />
+    </StoriesContextProvider>
+    <BottomTabNavigator />
+  </>
+);
 
 export default Root;
