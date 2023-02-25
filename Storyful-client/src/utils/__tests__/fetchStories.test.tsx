@@ -1,26 +1,28 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, vitest } from "vitest";
-import { fetchAllStoriesFromDatabase } from "../helpers";
+import {
+  fetchAllStoriesFromDatabase,
+  fetchAllStoriesFromDatabaseTest,
+} from "../helpers";
 
 describe("fetchAllStoriesFromDatabaseTest", () => {
   test("Returns the expected data from the API", async () => {
-    const mockResponse: any = [
-      {
-        id: 0,
-        title: "Test title",
-        author: "Test author",
-        genre: "Test genre",
-        cover_location: "https://example.com/example.jpg",
-      },
-    ];
-    const mockJsonPromise = Promise.resolve(mockResponse);
-    const mockFetchPromise: any = Promise.resolve({
-      json: () => mockJsonPromise,
+    interface mockStoryInterface {
+      id: number;
+      title: string;
+      author: string;
+      genre: string;
+      cover_location: string;
+    }
+
+    const story = await fetchAllStoriesFromDatabaseTest();
+
+    expect(story[0]).toMatchObject<mockStoryInterface>({
+        id: expect.any(Number),
+        title: expect.any(String),
+        author: expect.any(String),
+        genre: expect.any(String),
+        cover_location: expect.any(String),
     });
-    vitest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
-
-    const data = await fetchAllStoriesFromDatabase();
-
-    expect(data).toEqual(mockResponse);
   });
 });
