@@ -2,7 +2,9 @@ import React, { createContext, useEffect, useMemo, useState } from "react";
 import { IStories, storiesContextType } from "../../@types/stories";
 import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
 
-export const StoryDataContext = createContext<storiesContextType | null>(null);
+export const StoryDataContext = createContext<storiesContextType>({
+  stories: [],
+});
 
 const StoriesContextProvider = ({ children }: any) => {
   const [stories, setStories] = useState<IStories[]>([]);
