@@ -32,7 +32,7 @@ const Home: React.FC = (): ReactElement => {
         />
       </article>
       <section
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 40 }}
         className="home-container-stories-container"
       >
         {stories ? (
