@@ -10,11 +10,7 @@ import { StoryDataContext } from "../../services/ContextProviders/StoriesContext
 import { storiesContextType } from "../../@types/stories";
 
 const Home: React.FC = (): ReactElement => {
-  const { stories, fetchStories } = useContext(StoryDataContext) as storiesContextType;
-
-  useEffect(() => {
-    fetchStories();
-  }, []);
+  const { stories } = useContext(StoryDataContext) as storiesContextType;
 
   return (
     <section className="home-container">
