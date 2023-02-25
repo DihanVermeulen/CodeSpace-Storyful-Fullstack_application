@@ -50,7 +50,6 @@ const BottomTabNavigator = () => {
         }`}
         onClick={() => {
           handleTabClick(0);
-          console.log("Tab 1 clicked");
         }}
       >
         <svg
@@ -76,7 +75,6 @@ const BottomTabNavigator = () => {
         }`}
         onClick={() => {
           handleTabClick(1);
-          console.log("Tab 2 clicked");
         }}
       >
         <svg
@@ -101,7 +99,6 @@ const BottomTabNavigator = () => {
         }`}
         onClick={() => {
           handleTabClick(2);
-          console.log("Tab 3 clicked");
         }}
       >
         <svg
