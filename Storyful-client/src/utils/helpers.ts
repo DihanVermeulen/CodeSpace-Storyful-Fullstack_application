@@ -6,7 +6,7 @@ export const fetchAllStoriesFromDatabase = async () => {
     const response = await axios.get("/stories");
     return response;
   } catch (error: any) {
-    throw new Error(error.response.data.error);
+    throw new Error(error);
   }
 };
 
@@ -15,6 +15,6 @@ export const fetchAllStoriesFromDatabaseTest = async () => {
     const response = await StoriesTestData;
     return response;
   } catch (error: any) {
-    throw new Error(error.response.data.error);
+    throw new Error(error);
   }
 };
