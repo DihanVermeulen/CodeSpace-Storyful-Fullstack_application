@@ -10,6 +10,7 @@ return function(App $app) {
         $group->get('', [UserController::class, 'findAll']);
         $group->get('/{id}', [UserController::class, 'findUserByID']); 
         $group->post('', [UserController::class, 'createUser']); 
+        $group->post('/authenticate', [UserController::class, 'authenticate']);
     });
 
     $app->group('/stories', function (Group $group) {
