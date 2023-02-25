@@ -9,7 +9,7 @@ return function(App $app) {
     $app->group('/users', function (Group $group) {
         $group->get('', [UserController::class, 'findAll']);
         $group->get('/{id}', [UserController::class, 'findUserByID']); 
-        $group->post('', [UserController::class, 'createUser']); 
+        $group->post('/register', [UserController::class, 'createUser']); 
         $group->post('/authenticate', [UserController::class, 'authenticate']);
     });
 
