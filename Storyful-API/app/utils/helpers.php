@@ -1,3 +1,9 @@
+<?php
+
+// * Global helper functions * //
+
+declare(strict_types=1);
+
 if (!function_exists('hashPassword')) {
     function hashPassword(string $password): string
     {
