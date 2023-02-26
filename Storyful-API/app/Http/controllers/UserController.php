@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 use Psr\Container\ContainerInterface;
 use Psr\http\Message\ResponseInterface as Response;
