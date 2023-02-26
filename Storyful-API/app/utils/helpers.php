@@ -11,6 +11,13 @@ if (!function_exists('hashPassword')) {
     }
 }
 
+if (!function_exists('verifyPassword')) {
+    function verifyPassword(string $password): bool
+    {
+        return password_verify($password, PASSWORD_BCRYPT);
+    }
+}
+
 if (!function_exists('createUniqueID')) {
     /**
      * Creates a unique ID
