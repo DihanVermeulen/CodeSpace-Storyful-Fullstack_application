@@ -13,11 +13,20 @@ class UserController
     }
 
     public function findAll(Request $request, Response $response)
+    /**
+     * Finds all users in the database
+     */
+    public function findAll(Response $response)
     {
         $db = $this->container->get('db');
         $users = $db->query('SELECT * FROM users');
         $rows = $users->fetchAll();
-        $response->getBody()->write(json_encode($rows));
+        $response->getBody()->write(json_encode($rows, JSON_PRETTY_PRINT));
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Access-Control-Allow-Origin', '*');
+    }
+
         return $response->withHeader('Content-Type', 'application/json');
     }
     public function authenticate(Request $request, Response $response)
