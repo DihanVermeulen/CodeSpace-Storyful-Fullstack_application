@@ -41,16 +41,17 @@ class UserController
     }
     public function authenticate(Request $request, Response $response)
     {
-        $userPayload = $request->getBody()->getContents();
-        $parsedUserPayload = json_decode($userPayload, true);
+        $user_payload = $request->getBody()->getContents();
+        $parsed_user_payload = json_decode($user_payload, true);
 
-        $user = authenticateUser($userPayload, $userPayload);
+        $authenticator = new Authenticate($this->container);
+        $user = $authenticator->authenticateUser($parsed_user_payload["email"], $parsed_user_payload["password"]);
+
         if (!$user) {
-            $response = $response
+            $response->getBody()->write(json_encode(array("error" => "Invalid credentials")));
+            return $response
                 ->withHeader("Content-Type", "application/json")
                 ->withStatus(401);
-            $response->getBody()->write(array("error" => "Invalid credentials"));
-            return $response;
         } else {
             $jwtPayload = array(
                 "sub" => "602e44f96ee4c",
@@ -59,7 +60,9 @@ class UserController
             );
             $jwt = \Firebase\JWT\JWT::encode($jwtPayload, \App\Interfaces\KeyInterface::JWT_KEY, 'HS256');
             $response->getBody()->write(json_encode(array("jwt" => $jwt)));
-            return $response->withHeader("Content-Type", "application/json");
+            return $response
+                ->withHeader("Content-Type", "application/json")
+                ->withStatus(200);
         }
     }
 }
