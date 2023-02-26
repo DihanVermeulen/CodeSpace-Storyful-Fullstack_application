@@ -27,6 +27,16 @@ class UserController
             ->withHeader('Access-Control-Allow-Origin', '*');
     }
 
+    /**
+     * Finds user by ID
+     * @param any $id id passed in to search param
+     */
+    public function findUserByID(Response $response, $id)
+    {
+        $db = $this->container->get('db');
+        $user = $db->query("SELECT * FROM users WHERE id = '{$id}'");
+        $rows = $user->fetchAll();
+        $response->getBody()->write(json_encode($rows, JSON_PRETTY_PRINT));
         return $response->withHeader('Content-Type', 'application/json');
     }
     public function authenticate(Request $request, Response $response)
