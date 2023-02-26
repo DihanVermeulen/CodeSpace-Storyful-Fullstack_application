@@ -16,7 +16,7 @@ return function(App $app) {
     $app->add(new JwtAuthentication([
         "path" => "/",
         "algorithm" => ["HS256"],
-        "ignore" => ["/users/authenticate", "/stories"],
+        "ignore" => ["/users/authenticate", "/stories", "/users/register"],
         "secret" => \App\Interfaces\KeyInterface::JWT_KEY,
         "error" => function (Response $response, $arguments) {
             $data = array("error" => "Invalid token");
