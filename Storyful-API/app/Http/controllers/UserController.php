@@ -3,9 +3,13 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
+
 use Psr\Container\ContainerInterface;
 use Psr\http\Message\ResponseInterface as Response;
 use Psr\http\Message\RequestInterface as Request;
+use Src\Domain\User\User;
+use App\Authenticate\Authenticate;
+
 class UserController
 {
     private $container;
