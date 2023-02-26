@@ -28,7 +28,7 @@ class Authenticate
 
         if (count($rows) > 0) {
             $hashed_password = $rows[0]['password'];
-            $verify_password = password_verify('guest123', $hashed_password);
+            $verify_password = password_verify($password, $hashed_password);
             return $verify_password;
         } else {
             // no data was found
