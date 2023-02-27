@@ -62,6 +62,10 @@ class UserController
             $jwtPayload = array(
                 "sub" => "602e44f96ee4c",
                 "username" => "guest.test",
+                "iat" => time(),
+                "id" => $user['id'],
+                "username" => $user['username'],
+                "email" => $user['email'],
                 "exp" => time() + 259200 // Token expires in 3 days
             );
             $jwt = \Firebase\JWT\JWT::encode($jwtPayload, \App\Interfaces\KeyInterface::JWT_KEY, 'HS256');
