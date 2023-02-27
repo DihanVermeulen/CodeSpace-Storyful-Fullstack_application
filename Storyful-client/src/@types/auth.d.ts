@@ -10,9 +10,11 @@ export interface IUserLogin {
 }
 
 export interface IToken {
-  iat: string | null;
-  id: string | null;
-  exp: string | null;
+  iat: string;
+  id: string;
+  username: string;
+  email: string;
+  exp: string;
 }
 
 export type AuthContextType = {
