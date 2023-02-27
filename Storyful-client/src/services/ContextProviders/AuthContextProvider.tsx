@@ -58,6 +58,7 @@ const AuthContextProvider = ({ children }: any) => {
 
   const logout = () => {
     console.trace("Log out is trigged");
+    localStorage.removeItem("token");
   };
 
   useEffect(() => {
