@@ -18,7 +18,7 @@ class Authenticate
      * @param string $email email used to authenticate
      * @param string $password password used to authenticate
      */
-    function authenticateUser(string $email, string $password): bool
+    function authenticateUser(string $email, string $password): bool | array
     {
         $db = $this->container->get('db');
 
@@ -28,7 +28,15 @@ class Authenticate
         if (count($rows) > 0) {
             $hashed_password = $rows[0]['password'];
             $verify_password = password_verify($password, $hashed_password);
-            return $verify_password;
+            if ($verify_password) {
+                return array(
+                    "id" => $rows[0]['id'],
+                    "username" => $rows[0]['username'],
+                    "email" => $rows[0]['email'],
+                );
+            } else {
+                return false;
+            }
         } else {
             return false; // no data was found
         }
