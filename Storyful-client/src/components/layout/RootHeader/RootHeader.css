@@ -16,3 +16,16 @@
   justify-content: center;
   align-items: center;
 }
+
+.login-logout-button {
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.login-logout-button:active {
+  color: blueviolet;
+}
