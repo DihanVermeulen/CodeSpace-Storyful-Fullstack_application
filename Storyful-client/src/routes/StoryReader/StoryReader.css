@@ -1,5 +1,5 @@
 .storyreader-top-section {
-  height: 50vh;
+  height: 60vh;
   background-color: #f3f3f3;
   display: flex;
   justify-content: center;
@@ -7,15 +7,30 @@
 }
 
 .storyreader-top-section img {
-  width: 10rem;
+  width: 12rem;
 }
 
 .storyreader-bottom-section {
   padding: 20px;
 }
 
-.top-navbar {
+.storyreader-top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   position: absolute;
   width: 100%;
   top: 0;
+}
+
+.storyreader-top-navbar-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(100, 100, 100, 0.5);
+  border-radius: 100%;
+  padding: 5px;
+  outline: none;
+  border: none;
 }
