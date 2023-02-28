@@ -7,6 +7,8 @@ import Home from "./routes/Home/Home";
 import Library from "./routes/Library/Library";
 import Profile from "./routes/Profile/Profile";
 import AuthContextProvider from "./services/ContextProviders/AuthContextProvider";
+import { Login } from "./routes/Login/Login";
+import { Signup } from "./routes/Register/Signup";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 
