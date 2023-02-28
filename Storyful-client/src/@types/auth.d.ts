@@ -5,8 +5,8 @@ export interface IUser {
 }
 
 export interface IUserLogin {
-  email: string;
-  password: string;
+  email: string | null | undefined;
+  password: string | null | undefined;
 }
 
 export interface IToken {
