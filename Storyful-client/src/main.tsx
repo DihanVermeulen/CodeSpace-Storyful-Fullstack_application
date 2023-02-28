@@ -10,6 +10,7 @@ import AuthContextProvider from "./services/ContextProviders/AuthContextProvider
 import { Login } from "./routes/Login/Login";
 import { Signup } from "./routes/Register/Signup";
 import StoryReader from "./routes/StoryReader/StoryReader";
+import StoriesContextProvider from "./services/ContextProviders/StoriesContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +29,6 @@ const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
-      {
-        path: "read-story",
-        element: <StoryReader />,
-      },
     ],
   },
   {
@@ -42,12 +39,18 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
+  {
+    path: "read-story",
+    element: <StoryReader />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <RouterProvider router={router} />
+      <StoriesContextProvider>
+        <RouterProvider router={router} />
+      </StoriesContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
