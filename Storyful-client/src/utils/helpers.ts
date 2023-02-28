@@ -4,7 +4,7 @@ import StoriesTestData from "../data/stories.json";
 export const fetchAllStoriesFromDatabase = async () => {
   try {
     const response = await axios.get("/stories");
-    return response;
+    return response.data;
   } catch (error: any) {
     throw new Error(error);
   }
