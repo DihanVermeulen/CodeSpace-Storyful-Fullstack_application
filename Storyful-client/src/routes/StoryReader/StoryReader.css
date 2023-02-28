@@ -1,0 +1,21 @@
+.storyreader-top-section {
+  height: 50vh;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.storyreader-top-section img {
+  width: 10rem;
+}
+
+.storyreader-bottom-section {
+  padding: 20px;
+}
+
+.top-navbar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
