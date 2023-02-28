@@ -5,18 +5,14 @@ import ComedyIcon from "../../assets/Categories/ComedyIcon";
 import HorrorIcon from "../../assets/Categories/HorrorIcon";
 import RomanceIcon from "../../assets/Categories/RomanceIcon";
 import ActionIcon from "../../assets/Categories/ActionIcon";
-import {
-  ReactElement,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import { ReactElement, useContext } from "react";
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 import { storiesContextType } from "../../@types/stories";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = (): ReactElement => {
   const { stories } = useContext(StoryDataContext) as storiesContextType;
+  const navigate = useNavigate();
 
   return (
     <section className="home-container">
@@ -40,6 +36,12 @@ const Home: React.FC = (): ReactElement => {
             <article
               className="home-container-stories-container-item"
               key={key}
+              onClick={() =>
+                navigate({
+                  pathname: "read-story",
+                  search: `story-id=${story.id}`,
+                })
+              }
             >
               <img src={story.cover_location} />
               <h3>{story.title}</h3>
