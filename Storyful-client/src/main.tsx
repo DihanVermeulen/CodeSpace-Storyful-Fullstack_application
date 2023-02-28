@@ -9,6 +9,7 @@ import Profile from "./routes/Profile/Profile";
 import AuthContextProvider from "./services/ContextProviders/AuthContextProvider";
 import { Login } from "./routes/Login/Login";
 import { Signup } from "./routes/Register/Signup";
+import StoryReader from "./routes/StoryReader/StoryReader";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "read-story",
+        element: <StoryReader />,
       },
     ],
   },
