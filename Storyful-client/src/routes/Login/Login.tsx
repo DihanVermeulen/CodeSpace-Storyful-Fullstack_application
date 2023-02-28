@@ -1,8 +1,12 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContextType } from "../../@types/auth";
+import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./Login.css";
 
 export const Login: React.FC = (): ReactElement => {
+  const { authenticate } = useContext(AuthContext) as AuthContextType;
+
   const handelSubmit = (event: any) => {
     event.preventDefault();
   };
@@ -32,7 +36,7 @@ export const Login: React.FC = (): ReactElement => {
         </button>
         <p style={{ marginTop: "10px", cursor: "pointer" }}>
           Don't have an account? Please <br />
-          <b> 
+          <b>
             <Link to="/signup"> sign up</Link>
           </b>
         </p>
