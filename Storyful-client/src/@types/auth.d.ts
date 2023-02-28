@@ -20,7 +20,9 @@ export interface IToken {
 export type AuthContextType = {
   user: IUser | null;
   isAuthenticated: boolean;
-  authenticate: (userLoginInformation: IUserLogin) => Promise<void>;
+  authenticate: (
+    userLoginInformation: IUserLogin
+  ) => Promise<void> | true | false;
   logout: () => void;
   JWTToken: IToken | null;
 };
