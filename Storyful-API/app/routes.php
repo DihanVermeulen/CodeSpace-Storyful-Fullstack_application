@@ -28,6 +28,7 @@ return function(App $app) {
 
     $app->group('/stories', function (Group $group) {
         $group->get('', [StoryController::class, 'findAll']);
+        $group->get('/document/{id}', [StoryController::class, 'getStoryDocument']);
     });
 }
 
