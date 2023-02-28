@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContextType, IUserLogin } from "../../@types/auth";
 import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 export const Login: React.FC = (): ReactElement => {
   const { authenticate } = useContext(AuthContext) as AuthContextType;
@@ -10,13 +11,18 @@ export const Login: React.FC = (): ReactElement => {
     email: null,
     password: null,
   });
+  const navigate = useNavigate();
 
   const handelSubmit = (event: any) => {
     event.preventDefault();
-    authenticate({
+    const authenticated = authenticate({
       email: loginCredentials?.email,
       password: loginCredentials?.password,
     });
+
+    authenticated
+      ? navigate('/')
+      : console.log("User is not authenticated");
   };
 
   return (
