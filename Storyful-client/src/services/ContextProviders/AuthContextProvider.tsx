@@ -47,18 +47,23 @@ const AuthContextProvider = ({ children }: any) => {
           response.data.jwt
         );
         localStorage.setItem("token", JSON.stringify(response.data.jwt));
+        setIsAuthenticated(true);
+        return true;
       })
-      .catch((error) =>
+      .catch((error) => {
         console.log(
           "!!!Error within AuthContextProvider: authenticate: ",
           error
-        )
-      );
+        );
+        setIsAuthenticated(false);
+        return false;
+      });
   };
 
   const logout = () => {
-    console.trace("Log out is trigged");
     localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    setJWTToken(null);
   };
 
   useEffect(() => {
@@ -75,7 +80,7 @@ const AuthContextProvider = ({ children }: any) => {
       }
     };
     initializeAuth();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider
