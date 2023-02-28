@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { storiesContextType } from "../../@types/stories";
+import BackIcon from "../../assets/Categories/BackIcon";
+import MoreIcon from "../../assets/Categories/MoreIcon";
+import Dropdown from "../../components/form/Dropdown/Dropdown";
 import axiosInstance from "../../services/axios/axios";
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 import "./StoryReader.css";
@@ -13,11 +16,11 @@ interface IStoryInformation {
 }
 
 const StoryReader = () => {
-  const [storyInformation, setStoryInformation] =
-    useState<IStoryInformation>();
+  const [storyInformation, setStoryInformation] = useState<IStoryInformation>();
   const [documentData, setDocumentData] = useState<string>();
   const { stories } = useContext(StoryDataContext) as storiesContextType;
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -32,7 +35,7 @@ const StoryReader = () => {
         }
       });
     };
-    if(id) {
+    if (id) {
       getStory();
     }
 
@@ -46,8 +49,25 @@ const StoryReader = () => {
     }
   }, [location.search, stories]);
 
+  const handleBackNavigate = () => {
+    navigate(-1);
+  };
+
   return (
     <section>
+      <nav className="storyreader-top-navbar">
+        <button
+          className="storyreader-top-navbar-button"
+          onClick={handleBackNavigate}
+        >
+          <BackIcon colour="#ffffff" width="30px" height="30px" />
+        </button>
+        <Dropdown options={["Planned", "Reading", "Completed"]}>
+          <button className="storyreader-top-navbar-button">
+            <MoreIcon colour="#ffffff" width="30px" height="30px" />
+          </button>
+        </Dropdown>
+      </nav>
       <section className="storyreader-top-section">
         <img src={storyInformation?.cover_location} alt="story cover" />
       </section>
