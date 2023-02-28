@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContextType } from "../../@types/auth";
+import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./Profile.css";
 
 const Profile = () => {
@@ -6,6 +8,7 @@ const Profile = () => {
   const [storiesRead, setStoriesRead] = useState<number>(0);
   const [storiesInLibrary, setStoriesInLibrary] = useState<number>(0);
   const [storiesReading, setStoriesReading] = useState<number>(0);
+  const { JWTToken } = useContext(AuthContext) as AuthContextType;
 
   return (
     <section className="profile-container">
@@ -13,7 +16,7 @@ const Profile = () => {
         <div className="profile-image"></div>
       </section>
       <section className="profile-container-user-information">
-        <h3>{userName}</h3>
+        <h3>{JWTToken ? JWTToken?.username : "Guest"}</h3>
       </section>
       <article className="profile-container-user-stats">
         <div className="profile-container-user-stats-item">
