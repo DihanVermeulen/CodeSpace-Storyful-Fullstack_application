@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { IStories, storiesContextType } from "../../@types/stories";
-import { fetchAllStoriesFromDatabaseTest } from "../../utils/helpers";
+import { fetchAllStoriesFromDatabase } from "../../utils/helpers";
 
 export const StoryDataContext = createContext<storiesContextType>({
   stories: [],
@@ -12,7 +12,7 @@ const StoriesContextProvider = ({ children }: any) => {
   useEffect(() => {
     const fetchStories = async () => {
       console.log("Fetching data...");
-      const jsonData = await fetchAllStoriesFromDatabaseTest();
+      const jsonData = await fetchAllStoriesFromDatabase();
       console.log("json data: ", jsonData);
       setStories(jsonData);
     };
