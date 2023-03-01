@@ -23,7 +23,11 @@ class LibraryController
     {
         $db = $this->container->get('db');
 
-        $library = $db->query("SELECT * FROM library WHERE user_id = '{$id}'");
+        $library = $db->query("SELECT *
+        FROM library
+        JOIN stories
+        ON library.story_id = stories.id
+        WHERE library.user_id = '{$id}'");
         $rows = $library->fetchAll();
 
         $response->getBody()->write(json_encode($rows));
