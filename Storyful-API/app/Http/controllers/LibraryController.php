@@ -64,4 +64,32 @@ class LibraryController
             return $response;
         }
     }
+
+    public function updateStoryState(Request $request, Response $response, $id)
+    {
+        $request_data = $request->getBody()->getContents();
+        $parsed_data = json_decode($request_data, true);
+
+
+
+        // $response->getBody()->write(json_encode(array($parsed_data)));
+
+        // return $response
+        //     ->withHeader("Content-Type", "application/json");
+        try {
+            $db = $this->container->get('db');
+            // $statement = $db->prepare("UPDATE library set status = '" + $parsed_data['status'] + "' WHERE user_id = '{id}'");
+            $statement = $db->prepare("UPDATE library set status = ? WHERE user_id = ? AND story_id = ?");
+            $statement->execute([$parsed_data['status'], $id, $parsed_data['story_id']]);
+
+            $response->getBody()->write(json_encode(array("message" => "success")));
+
+            return $response
+                ->withHeader("Content-Type", "application/json");
+        } catch (PDOException $error) {
+            $response->getBody()->write(json_encode(array("message" => $error)));
+            return $response
+                ->withHeader("Content-Type", "application/json");
+        }
+    }
 }
