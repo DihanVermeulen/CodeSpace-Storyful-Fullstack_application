@@ -17,6 +17,6 @@ if (!function_exists('createUniqueID')) {
      */
     function createUniqueID(): string
     {
-        return uniqid("", true);
+        return uniqid("");
     }
 }
