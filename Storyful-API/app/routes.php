@@ -29,6 +29,7 @@ return function(App $app) {
     $app->group('/library', function(Group $group) {
         $group->get('/{id}', [LibraryController::class, 'getUserLibrary']);
         $group->post('', [LibraryController::class, 'addStoryToLibrary']);
+        $group->put('/{id}', [LibraryController::class, 'updateStoryState']);
     });
 
     $app->group('/stories', function (Group $group) {
@@ -36,4 +37,5 @@ return function(App $app) {
         $group->get('/document/{id}', [StoryController::class, 'getStoryDocument']);
     });
 }
+
 ?>
