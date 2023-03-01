@@ -11,5 +11,6 @@ export type storiesContextType = {
 };
 
 export type LibraryContextType = {
-  stories: IStories[];
+  library: any[];
+  getLibrary: () => void;
 };
