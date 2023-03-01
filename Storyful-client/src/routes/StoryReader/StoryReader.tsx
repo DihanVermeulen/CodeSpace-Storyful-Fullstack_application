@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storiesContextType } from "../../@types/stories";
-import BackIcon from "../../assets/Categories/BackIcon";
-import MoreIcon from "../../assets/Categories/MoreIcon";
+import BackIcon from "../../assets/TopNavigator/BackIcon";
+import MoreIcon from "../../assets/TopNavigator/MoreIcon";
 import Dropdown from "../../components/form/Dropdown/Dropdown";
 import axiosInstance from "../../services/axios/axios";
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
@@ -18,6 +18,7 @@ interface IStoryInformation {
 const StoryReader = () => {
   const [storyInformation, setStoryInformation] = useState<IStoryInformation>();
   const [documentData, setDocumentData] = useState<string>();
+  const [option, setOption] = useState<number | null>(0);
   const { stories } = useContext(StoryDataContext) as storiesContextType;
   const location = useLocation();
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const StoryReader = () => {
         >
           <BackIcon colour="#ffffff" width="30px" height="30px" />
         </button>
-        <Dropdown options={["Planned", "Reading", "Completed"]}>
+        <Dropdown options={["Planned", "Reading", "Completed"]} selectedOption={option != null ? option : null}>
           <button className="storyreader-top-navbar-button">
             <MoreIcon colour="#ffffff" width="30px" height="30px" />
           </button>
