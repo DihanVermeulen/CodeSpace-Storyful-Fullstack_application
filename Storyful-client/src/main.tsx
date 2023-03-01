@@ -11,6 +11,7 @@ import { Login } from "./routes/Login/Login";
 import { Signup } from "./routes/Register/Signup";
 import StoryReader from "./routes/StoryReader/StoryReader";
 import StoriesContextProvider from "./services/ContextProviders/StoriesContextProvider";
+import LibraryContextProvider from "./services/ContextProviders/LibraryContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthContextProvider>
       <StoriesContextProvider>
-        <RouterProvider router={router} />
+        <LibraryContextProvider>
+          <RouterProvider router={router} />
+        </LibraryContextProvider>
       </StoriesContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
