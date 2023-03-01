@@ -9,3 +9,7 @@ export interface IStories {
 export type storiesContextType = {
   stories: IStories[];
 };
+
+export type LibraryContextType = {
+  stories: IStories[];
+};
