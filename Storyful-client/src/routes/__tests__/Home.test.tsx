@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it } from "vitest";
-import { fetchAllStoriesFromDatabase } from "../../utils/helpers";
 import Home from "../Home/Home";
 
 describe("Home", () => {
