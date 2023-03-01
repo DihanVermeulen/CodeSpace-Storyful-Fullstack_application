@@ -7,6 +7,7 @@ type DropdownProps = {
   selectedOption?: number | null;
   storyIsInLibrary?: boolean;
   handleOptionChange: (id: any, status: number) => void;
+  handleChooseOption: (status: number) => void;
 };
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -15,6 +16,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   selectedOption,
   storyIsInLibrary,
   handleOptionChange,
+  handleChooseOption,
 }) => {
   const [optionSelected, setOptionSelected] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +38,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       }
     } else {
       console.log("Story is not in library so cannot update");
+      handleChooseOption(optionIndex);
     }
     console.log(optionIndex);
     setIsOpen(false);
