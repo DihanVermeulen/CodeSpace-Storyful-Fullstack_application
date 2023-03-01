@@ -70,15 +70,8 @@ class LibraryController
         $request_data = $request->getBody()->getContents();
         $parsed_data = json_decode($request_data, true);
 
-
-
-        // $response->getBody()->write(json_encode(array($parsed_data)));
-
-        // return $response
-        //     ->withHeader("Content-Type", "application/json");
         try {
             $db = $this->container->get('db');
-            // $statement = $db->prepare("UPDATE library set status = '" + $parsed_data['status'] + "' WHERE user_id = '{id}'");
             $statement = $db->prepare("UPDATE library set status = ? WHERE user_id = ? AND story_id = ?");
             $statement->execute([$parsed_data['status'], $id, $parsed_data['story_id']]);
 
