@@ -10,6 +10,7 @@ import { LibraryContext } from "../../services/ContextProviders/LibraryContextPr
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./StoryReader.css";
+import jwt_decode from "jwt-decode";
 
 interface IStoryInformation {
   title: string;
@@ -24,8 +25,12 @@ const StoryReader = () => {
   const [option, setOption] = useState<number | null>(null);
   const [storyIsInLibrary, setStoryIsInLibrary] = useState<boolean>(false);
   const { stories } = useContext(StoryDataContext) as storiesContextType;
-  const { JWTToken } = useContext(AuthContext) as AuthContextType;
-  const { library } = useContext(LibraryContext) as LibraryContextType;
+  const { JWTToken, isAuthenticated } = useContext(
+    AuthContext
+  ) as AuthContextType;
+  const { library, getLibrary } = useContext(
+    LibraryContext
+  ) as LibraryContextType;
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -110,6 +115,38 @@ const StoryReader = () => {
     }
   };
 
+  const addStoryToLibrary = async (status: number) => {
+    if (isAuthenticated) {
+      const searchParams = new URLSearchParams(location.search);
+      const storyID: any = searchParams.get("story-id");
+
+      const { id }: any = JWTToken;
+      console.log("user id: ", id, " story id: ", storyID);
+
+      const token = JSON.parse(localStorage.getItem("token") as string);
+      try {
+        const data = {
+          user_id: id,
+          story_id: storyID,
+          status: status,
+        };
+
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
+        const response = await axiosInstance.post("library", data, {
+          headers: headers,
+        });
+        if (response.data.message == "success") {
+          console.log("success");
+          getLibrary();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <section>
       <nav className="storyreader-top-navbar">
@@ -124,6 +161,7 @@ const StoryReader = () => {
           selectedOption={option != null ? option : null}
           storyIsInLibrary={storyIsInLibrary}
           handleOptionChange={handleOptionChange}
+          handleChooseOption={addStoryToLibrary}
         >
           <button className="storyreader-top-navbar-button">
             <MoreIcon colour="#ffffff" width="30px" height="30px" />
