@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LibraryController;
 use Slim\App;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoryController;
@@ -25,11 +26,14 @@ return function(App $app) {
         $group->post('/register', [UserController::class, 'createUser']); 
         $group->post('/authenticate', [UserController::class, 'authenticate']);
     });
+    $app->group('/library', function(Group $group) {
+        $group->get('/{id}', [LibraryController::class, 'getUserLibrary']);
+        $group->post('', [LibraryController::class, 'addStoryToLibrary']);
+    });
 
     $app->group('/stories', function (Group $group) {
         $group->get('', [StoryController::class, 'findAll']);
         $group->get('/document/{id}', [StoryController::class, 'getStoryDocument']);
     });
 }
-
 ?>
