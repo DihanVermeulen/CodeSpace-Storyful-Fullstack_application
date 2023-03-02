@@ -1,0 +1,1 @@
+These are all the stories that is sent from the server to the client side
