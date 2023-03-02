@@ -1,4 +1,5 @@
 <?php
+/* Routes */
 
 use App\Http\Controllers\LibraryController;
 use Slim\App;
@@ -7,7 +8,7 @@ use App\Http\Controllers\StoryController;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function(App $app) {
-    // enable CORS
+    /* Enables CORS */
     $app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
     });
@@ -19,6 +20,8 @@ return function(App $app) {
                 ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
                 ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     });
+
+    /* Routing groups */
 
     $app->group('/users', function (Group $group) {
         $group->get('', [UserController::class, 'findAll']);
