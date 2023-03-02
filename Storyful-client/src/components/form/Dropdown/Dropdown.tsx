@@ -8,6 +8,7 @@ type DropdownProps = {
   storyIsInLibrary?: boolean;
   handleOptionChange: (id: any, status: number) => void;
   handleChooseOption: (status: number) => void;
+  handleOptionRemove: (id: any) => void;
 };
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -17,6 +18,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   storyIsInLibrary,
   handleOptionChange,
   handleChooseOption,
+  handleOptionRemove,
 }) => {
   const [optionSelected, setOptionSelected] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +67,16 @@ const Dropdown: React.FC<DropdownProps> = ({
             </div>
           ))}
           {storyIsInLibrary && (
-            <div className="dropdown-options-container-item">Remove</div>
+            <div
+              className="dropdown-options-container-item"
+              onClick={() => {
+                handleOptionRemove(null);
+                setIsOpen(false);
+                setOptionSelected(null);
+              }}
+            >
+              Remove
+            </div>
           )}
         </div>
       )}

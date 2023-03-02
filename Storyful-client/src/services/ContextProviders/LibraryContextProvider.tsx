@@ -6,20 +6,18 @@ import React, {
   useState,
 } from "react";
 import { IStories, LibraryContextType } from "../../@types/stories";
-import { fetchAllStoriesFromDatabase } from "../../utils/helpers";
 import axiosInstance from "../axios/axios";
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "./AuthContextProvider";
 import { AuthContextType } from "../../@types/auth";
 
 export const LibraryContext = createContext<LibraryContextType>({
-  libraryStories: [],
   library: [],
+  getLibrary: () => {},
 });
 
 const LibraryContextProvider = ({ children }: any) => {
   const { isAuthenticated } = useContext(AuthContext) as AuthContextType;
-  const [libraryStories, setLibraryStories] = useState<IStories[]>([]);
   const [library, setLibrary] = useState<any>();
 
   const getLibrary = async () => {
@@ -32,7 +30,6 @@ const LibraryContextProvider = ({ children }: any) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const { data } = response;
-      console.log("data inside LibraryContextProvider: ", data);
       setLibrary(data);
       return data;
     } else throw new Error();
@@ -44,15 +41,11 @@ const LibraryContextProvider = ({ children }: any) => {
     } else {
       setLibrary([]);
     }
-    console.log(
-      "Inside Library Context Provider: isAuthenticated",
-      isAuthenticated
-    );
   }, [isAuthenticated]);
 
   const memoizedValue = useMemo(
-    () => ({ libraryStories, library }),
-    [libraryStories, library]
+    () => ({ library, getLibrary }),
+    [library, getLibrary]
   );
 
   return (

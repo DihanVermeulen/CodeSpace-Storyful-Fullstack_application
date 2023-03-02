@@ -2,6 +2,7 @@ export interface IUser {
   id: number | null;
   username: string | null;
   email: string | null;
+  avatar: any;
 }
 
 export interface IUserLogin {
@@ -22,7 +23,8 @@ export type AuthContextType = {
   isAuthenticated: boolean;
   authenticate: (
     userLoginInformation: IUserLogin
-  ) => Promise<void> | true | false;
+  ) => Promise<void> | true | false | any;
   logout: () => void;
   JWTToken: IToken | null;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 };

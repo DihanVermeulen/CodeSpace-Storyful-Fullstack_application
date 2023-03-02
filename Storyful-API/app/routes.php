@@ -30,6 +30,7 @@ return function(App $app) {
         $group->get('/{id}', [LibraryController::class, 'getUserLibrary']);
         $group->post('', [LibraryController::class, 'addStoryToLibrary']);
         $group->put('/{id}', [LibraryController::class, 'updateStoryState']);
+        $group->delete('/{id}', [LibraryController::class, 'removeStoryFromLibrary']);
     });
 
     $app->group('/stories', function (Group $group) {

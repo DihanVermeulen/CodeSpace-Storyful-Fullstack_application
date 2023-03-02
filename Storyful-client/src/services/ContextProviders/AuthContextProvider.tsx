@@ -9,6 +9,7 @@ export const AuthContext = createContext<AuthContextType>({
   authenticate: async (userLoginInformation: IUserLogin) => {},
   logout: () => {},
   JWTToken: null,
+  setIsAuthenticated: () => {},
 });
 
 const AuthContextProvider = ({ children }: any) => {
@@ -16,6 +17,7 @@ const AuthContextProvider = ({ children }: any) => {
     id: null,
     username: null,
     email: null,
+    avatar: null,
   });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [JWTToken, setJWTToken] = useState<IToken | null>(null);
@@ -35,29 +37,11 @@ const AuthContextProvider = ({ children }: any) => {
   };
 
   const authenticate = async (userLoginInformation: IUserLogin) => {
-    await axiosInstance
-      .post<{ jwt: string }>("/users/authenticate", userLoginInformation)
-      .then((response) => {
-        console.log(
-          "Response within AuthContextProvider: authenticate: ",
-          response
-        );
-        console.log(
-          "Token within AuthContextProvider: authenticate: ",
-          response.data.jwt
-        );
-        localStorage.setItem("token", JSON.stringify(response.data.jwt));
-        setIsAuthenticated(true);
-        return true;
-      })
-      .catch((error) => {
-        console.log(
-          "!!!Error within AuthContextProvider: authenticate: ",
-          error
-        );
-        setIsAuthenticated(false);
-        return false;
-      });
+    const response = await axiosInstance.post<{ jwt: string }>(
+      "/users/authenticate",
+      userLoginInformation
+    );
+    return response;
   };
 
   const logout = () => {
@@ -80,11 +64,38 @@ const AuthContextProvider = ({ children }: any) => {
       }
     };
     initializeAuth();
+
+    if (localStorage.getItem("avatar") as string) {
+      let avatar = localStorage.getItem("avatar");
+      user.avatar = avatar;
+    } else {
+      const generateRandomString = () => {
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let randomString = "";
+        for (let i = 0; i < 6; i++) {
+          randomString += alphabet.charAt(
+            Math.floor(Math.random() * alphabet.length)
+          );
+        }
+        console.log(randomString);
+        return randomString;
+      };
+      const randomString = generateRandomString();
+      localStorage.setItem("avatar", JSON.stringify(randomString));
+      user.avatar = randomString;
+    }
   }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider
-      value={{ user, authenticate, isAuthenticated, logout, JWTToken }}
+      value={{
+        user,
+        authenticate,
+        isAuthenticated,
+        logout,
+        JWTToken,
+        setIsAuthenticated,
+      }}
     >
       {children}
     </AuthContext.Provider>

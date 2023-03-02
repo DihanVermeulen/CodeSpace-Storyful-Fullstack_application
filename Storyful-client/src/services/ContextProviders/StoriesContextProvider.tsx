@@ -11,9 +11,7 @@ const StoriesContextProvider = ({ children }: any) => {
 
   useEffect(() => {
     const fetchStories = async () => {
-      console.log("Fetching data...");
       const jsonData = await fetchAllStoriesFromDatabase();
-      console.log("json data: ", jsonData);
       setStories(jsonData);
     };
     fetchStories();

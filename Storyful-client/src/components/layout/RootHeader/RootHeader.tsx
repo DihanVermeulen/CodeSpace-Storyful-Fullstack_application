@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContextType } from "../../../@types/auth";
 import { AuthContext } from "../../../services/ContextProviders/AuthContextProvider";
+import Avatar from "boring-avatars";
 import "./RootHeader.css";
 
 const RootHeader = () => {
-  const { isAuthenticated, logout } = useContext(
+  const { isAuthenticated, logout, user } = useContext(
     AuthContext
   ) as AuthContextType;
   const navigate = useNavigate();
@@ -51,14 +52,23 @@ const RootHeader = () => {
           </button>
         )}
 
-        <div
-          style={{
-            width: 45,
-            height: 45,
-            backgroundColor: "red",
-            borderRadius: 100,
-          }}
-        ></div>
+        {isAuthenticated ? (
+          <Avatar
+            size={45}
+            name={user?.avatar}
+            variant="bauhaus"
+            colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+          />
+        ) : (
+          <div
+            style={{
+              width: 45,
+              height: 45,
+              backgroundColor: "#F3F3F3",
+              borderRadius: 100,
+            }}
+          />
+        )}
       </div>
     </header>
   );

@@ -11,18 +11,43 @@ export const Login: React.FC = (): ReactElement => {
     email: null,
     password: null,
   });
+  const { isAuthenticated, setIsAuthenticated } = useContext(
+    AuthContext
+  ) as AuthContextType;
   const navigate = useNavigate();
 
-  const handelSubmit = (event: any) => {
+  const handelSubmit = async (event: any) => {
     event.preventDefault();
-    const authenticated = authenticate({
+    const authenticated = await authenticate({
       email: loginCredentials?.email,
       password: loginCredentials?.password,
-    });
-
-    authenticated
-      ? navigate('/')
-      : console.log("User is not authenticated");
+    })
+      .then((response: any) => {
+        console.log(
+          "Response within AuthContextProvider: authenticate: ",
+          response
+        );
+        console.log(
+          "Token within AuthContextProvider: authenticate: ",
+          response.data.jwt
+        );
+        localStorage.setItem("token", JSON.stringify(response.data.jwt));
+        setIsAuthenticated(true);
+        navigate("/");
+      })
+      .catch((error: any) => {
+        console.log(
+          "!!!Error within AuthContextProvider: authenticate: ",
+          error
+        );
+        setIsAuthenticated(false);
+      });
+    // const handelSubmit = async (event: any) => {
+    //   event.preventDefault();
+    //   const authenticated = await authenticate({
+    //     email: loginCredentials?.email,
+    //     password: loginCredentials?.password,
+    //   });
   };
 
   return (
@@ -44,6 +69,7 @@ export const Login: React.FC = (): ReactElement => {
                 email: event.target.value,
               }))
             }
+            required
           />
         </div>
         <div className="login-container-input-group">
@@ -57,6 +83,7 @@ export const Login: React.FC = (): ReactElement => {
                 password: event.target.value,
               }))
             }
+            required
           />
         </div>
         <button

@@ -45,6 +45,7 @@ const StoryReader = () => {
         setStoryIsInLibrary(true);
         return true;
       } else {
+        setStoryIsInLibrary(false);
         return;
       }
     });
@@ -82,6 +83,40 @@ const StoryReader = () => {
 
   const handleBackNavigate = () => {
     navigate(-1);
+  };
+
+  const handleOptionRemove = async (id: any) => {
+    const searchParams = new URLSearchParams(location.search);
+    id = searchParams.get("story-id");
+
+    const userID = JWTToken?.id;
+
+    const token = JSON.parse(localStorage.getItem("token") as string);
+    console.log("From inside handle option change: ", token);
+    if (isAuthenticated) {
+      try {
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
+
+        const deleteData = {
+          story_id: id,
+        };
+
+        const response = await axiosInstance.delete(`library/${userID}`, {
+          headers: headers,
+          data: deleteData,
+        });
+
+        if (response.data.message == "success") {
+          console.log("success");
+          getLibrary();
+        }
+        setStoryIsInLibrary(false);
+      } catch (error) {
+        return error;
+      }
+    }
   };
 
   const handleOptionChange = async (id: any, status: number) => {
@@ -168,6 +203,7 @@ const StoryReader = () => {
           storyIsInLibrary={storyIsInLibrary}
           handleOptionChange={handleOptionChange}
           handleChooseOption={addStoryToLibrary}
+          handleOptionRemove={handleOptionRemove}
         >
           <button className="storyreader-top-navbar-button">
             <MoreIcon colour="#ffffff" width="30px" height="30px" />

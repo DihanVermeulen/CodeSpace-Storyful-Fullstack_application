@@ -13,10 +13,13 @@
 }
 
 .profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 5px solid #ffffff;
   width: 180px;
   height: 180px;
-  background-color: blueviolet;
+  background-color: #F3F3F3;
   border-radius: 100%;
   position: absolute;
   left: 50%;

@@ -85,4 +85,27 @@ class LibraryController
                 ->withHeader("Content-Type", "application/json");
         }
     }
+
+    public function removeStoryFromLibrary(Request $request, Response $response, $id)
+    {
+        $request_data = $request->getBody()->getContents();
+        $parsed_data = json_decode($request_data, true);
+        $db = $this->container->get('db');
+        // $user_id = $parsed_data['user_id'];
+        $user_id = $id;
+        $story_id = $parsed_data['story_id'];
+
+        try {
+            $statement = $db->prepare("DELETE FROM library WHERE user_id = ? AND story_id = ?");
+            $statement->execute([$user_id, $story_id]);
+            $response->getBody()->write(json_encode(array(
+                "message" => "success"
+            )));
+            return $response
+                ->withHeader("Content-Type", "application/json");
+        } catch (PDOException $error) {
+            $response->getBody()->write(json_encode(array("error" => $error)));
+            return $response;
+        }
+    }
 }

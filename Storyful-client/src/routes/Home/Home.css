@@ -20,7 +20,7 @@
 
 .home-container-stories-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .home-container-stories-container-item {
@@ -37,4 +37,5 @@
   height: 200px;
   border-radius: 20px;
   margin-bottom: 10px;
+  background-color: #F3F3F3;
 }
