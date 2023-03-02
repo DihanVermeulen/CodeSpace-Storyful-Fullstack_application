@@ -10,7 +10,7 @@ import { LibraryContext } from "../../services/ContextProviders/LibraryContextPr
 import { StoryDataContext } from "../../services/ContextProviders/StoriesContextProvider";
 import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./StoryReader.css";
-import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 interface IStoryInformation {
   title: string;
@@ -34,13 +34,14 @@ const StoryReader = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  /**
+   * Checks if the story is in the library
+   * @param id Story ID
+   */
   const checkIfStoryIsInLibrary = (id: number): any => {
     console.log("checking if story is in library...");
     library.map((story) => {
-      console.log("library story: ", story);
       if (story.story_id == id) {
-        console.log("Story is in library");
-        console.log("Story status: ", story.status);
         setOption(story.status);
         setStoryIsInLibrary(true);
         return true;
@@ -54,6 +55,9 @@ const StoryReader = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const id: any = searchParams.get("story-id");
+    /**
+     * Gets the story that is being read
+     */
     const getStory = async () => {
       stories.map((story) => {
         if (story.id == id) {
@@ -62,6 +66,9 @@ const StoryReader = () => {
       });
     };
 
+    /**
+     * Fetches text document that contains story
+     */
     const fetchDocument = async () => {
       const response: any = await axiosInstance.get(`stories/document/${id}`);
       const data = await response.data;
@@ -85,6 +92,10 @@ const StoryReader = () => {
     navigate(-1);
   };
 
+  /**
+   * Removes reading status
+   * @param id Current selected story
+   */
   const handleOptionRemove = async (id: any) => {
     const searchParams = new URLSearchParams(location.search);
     id = searchParams.get("story-id");
@@ -109,16 +120,31 @@ const StoryReader = () => {
         });
 
         if (response.data.message == "success") {
-          console.log("success");
+          toast.success("Removed story from library", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
           getLibrary();
         }
         setStoryIsInLibrary(false);
       } catch (error) {
-        return error;
+        toast.error("Something is wrong...");
       }
     }
   };
 
+  /**
+   * Handles what happens when the option changes
+   * @param id Current selected story
+   * @param status Status to what the story is changed to
+   * @returns
+   */
   const handleOptionChange = async (id: any, status: number) => {
     const searchParams = new URLSearchParams(location.search);
     id = searchParams.get("story-id");
@@ -156,6 +182,10 @@ const StoryReader = () => {
     }
   };
 
+  /**
+   * Adds story to user's library
+   * @param status The status that is selected
+   */
   const addStoryToLibrary = async (status: number) => {
     if (isAuthenticated) {
       const searchParams = new URLSearchParams(location.search);
