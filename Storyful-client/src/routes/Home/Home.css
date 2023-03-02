@@ -39,3 +39,10 @@
   margin-bottom: 10px;
   background-color: #F3F3F3;
 }
+
+@media screen and (min-width: 500px) {
+  .home-container-stories-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

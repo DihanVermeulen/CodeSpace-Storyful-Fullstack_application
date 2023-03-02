@@ -9,18 +9,18 @@ const Profile = () => {
   const [storiesRead, setStoriesRead] = useState<number>(0);
   const [storiesInLibrary, setStoriesInLibrary] = useState<number>(0);
   const [storiesReading, setStoriesReading] = useState<number>(0);
-  const { JWTToken, user } = useContext(AuthContext) as AuthContextType;
+  const { JWTToken, user, isAuthenticated } = useContext(AuthContext) as AuthContextType;
 
   return (
     <section className="profile-container">
       <section className="profile-top-section">
         <div className="profile-image">
-        <Avatar
+        {isAuthenticated && <Avatar
             size={180}
             name={user?.avatar}
             variant="bauhaus"
             colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
-          />
+          />}
         </div>
       </section>
       <section className="profile-container-user-information">
