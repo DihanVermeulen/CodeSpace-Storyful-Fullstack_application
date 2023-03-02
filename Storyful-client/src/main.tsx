@@ -8,10 +8,11 @@ import Library from "./routes/Library/Library";
 import Profile from "./routes/Profile/Profile";
 import AuthContextProvider from "./services/ContextProviders/AuthContextProvider";
 import { Login } from "./routes/Login/Login";
-import { Signup } from "./routes/Register/Signup";
+import { Signup } from "./routes/Signup/Signup";
 import StoryReader from "./routes/StoryReader/StoryReader";
 import StoriesContextProvider from "./services/ContextProviders/StoriesContextProvider";
 import LibraryContextProvider from "./services/ContextProviders/LibraryContextProvider";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,16 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <AuthContextProvider>
       <StoriesContextProvider>
         <LibraryContextProvider>
+        <ToastContainer
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          rtl={false}
+          pauseOnHover
+          theme="dark"
+        ></ToastContainer>
           <RouterProvider router={router} />
         </LibraryContextProvider>
       </StoriesContextProvider>
