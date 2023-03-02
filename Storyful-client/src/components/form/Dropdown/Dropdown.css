@@ -1,0 +1,15 @@
+.dropdown-options-container {
+  position: absolute;
+  transform: translate(-50px, 10px);
+  background-color: rgba(100, 100, 100, 0.7);
+  color: #ffffff;
+}
+
+.dropdown-options-container-item {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dropdown-options-container-item:hover {
+  background-color: rgba(170, 170, 170, 0.7);
+}

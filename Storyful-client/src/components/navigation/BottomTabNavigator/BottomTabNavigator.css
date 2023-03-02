@@ -1,0 +1,32 @@
+.bottomtabnavigator-container {
+  position: fixed;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100vw;
+  height: 70px;
+  background-color: white;
+}
+
+.bottomtabnavigator-container-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottomtabnavigator-container-button-container.selected {
+  color: #721cff;
+}
+
+.bottomtabnavigator-container-button-container.selected svg path {
+  stroke: #721cff;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  width: 30px; /* adjust to match the width of your button */
+  height: 2px;
+  background-color: #721cff;
+  transition: left 0.3s ease-out;
+}

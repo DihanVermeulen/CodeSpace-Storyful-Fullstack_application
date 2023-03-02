@@ -1,0 +1,72 @@
+.profile-top-section {
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0)
+    ),
+    url(./../../assets/profile/bookshelf.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #ffffff;
+  width: 180px;
+  height: 180px;
+  background-color: #F3F3F3;
+  border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -90px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  color: #000000;
+}
+
+.profile-container-user-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.profile-container-user-information h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.profile-container-user-stats {
+  display: grid;
+  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+  width: 80%;
+  margin-top: 20px;
+}
+
+.profile-container-user-stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-container-user-stats-item-title {
+  font-size: 20px;
+  color: #9d9d9d;
+  font-weight: 100;
+}
+
+.profile-container-user-stats-item-number {
+  font-size: 24px;
+}

@@ -1,0 +1,22 @@
+.category-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #eeeeee;
+  padding: 10px;
+}
+.category-button-group {
+  display: flex;
+}
+
+.category-button-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+}
+
+.category-button-title {
+  font-size: 14px;
+}

@@ -1,0 +1,28 @@
+.searchbar-container {
+  display: flex;
+  width: 100%;
+  background-color: #eeeeee;
+  border-radius: 10px;
+}
+
+.searchbar-container-input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+}
+
+.searchbar-container-input:focus {
+  border: none;
+  outline: none;
+}
+
+.searchbar-container-input::placeholder {
+  color: #afafaf;
+}
+
+.searchbar-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
