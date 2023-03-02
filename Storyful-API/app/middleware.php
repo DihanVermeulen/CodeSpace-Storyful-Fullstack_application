@@ -1,4 +1,5 @@
 <?php
+/* Middleware for application */
 
 use Slim\App;
 use Tuupola\Middleware\JwtAuthentication;
