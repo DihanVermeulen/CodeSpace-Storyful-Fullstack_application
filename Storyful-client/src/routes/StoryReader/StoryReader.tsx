@@ -92,26 +92,32 @@ const StoryReader = () => {
 
     const token = JSON.parse(localStorage.getItem("token") as string);
     console.log("From inside handle option change: ", token);
-    if (token) {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
+    if (isAuthenticated) {
+      try {
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
 
-      const updatedData = {
-        story_id: id,
-        status: status,
-      };
+        const updatedData = {
+          story_id: id,
+          status: status,
+        };
 
-      const response = await axiosInstance.put(
-        `library/${userID}`,
-        updatedData,
-        {
-          headers: headers,
+        const response = await axiosInstance.put(
+          `library/${userID}`,
+          updatedData,
+          {
+            headers: headers,
+          }
+        );
+
+        if (response.data.message == "success") {
+          console.log("success");
+          getLibrary();
         }
-      );
-
-      const { data } = response;
-      console.log(data);
+      } catch (error) {
+        return error;
+      }
     }
   };
 
