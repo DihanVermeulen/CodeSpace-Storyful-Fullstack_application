@@ -60,7 +60,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           pauseOnFocusLoss
           rtl={false}
           pauseOnHover
-          theme="dark"
+          theme="light"
         ></ToastContainer>
           <RouterProvider router={router} />
         </LibraryContextProvider>
