@@ -17,6 +17,10 @@ const Home: React.FC = (): ReactElement => {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const navigate = useNavigate();
 
+  /**
+   * Filters stories
+   * @param category Category to filter stories by
+   */
   const handleFilter = (category: string) => {
     console.log("filtering ... ", category);
     setSelectedFilter(category);
