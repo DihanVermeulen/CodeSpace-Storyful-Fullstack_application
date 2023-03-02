@@ -1,4 +1,5 @@
 <?php 
+/* Settings for container */
 
 return function($container) {
     $container->set('settings', function() {

@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContextType } from "../../../@types/auth";
 import { AuthContext } from "../../../services/ContextProviders/AuthContextProvider";
 import Avatar from "boring-avatars";
+import logo from "../../../assets/logo.svg";
 import "./RootHeader.css";
+import Logo from "../../../assets/logo";
 
 const RootHeader = () => {
   const { isAuthenticated, logout, user } = useContext(
@@ -29,6 +31,7 @@ const RootHeader = () => {
             strokeLinejoin="round"
           />
         </svg>
+        <Logo colour="#000000" />
       </div>
       <div style={{ display: "inline-flex" }}>
         {isAuthenticated ? (

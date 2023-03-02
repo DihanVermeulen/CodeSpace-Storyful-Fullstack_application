@@ -4,6 +4,7 @@ import { AuthContextType, IUserLogin } from "../../@types/auth";
 import { AuthContext } from "../../services/ContextProviders/AuthContextProvider";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Login: React.FC = (): ReactElement => {
   const { authenticate } = useContext(AuthContext) as AuthContextType;
@@ -16,6 +17,10 @@ export const Login: React.FC = (): ReactElement => {
   ) as AuthContextType;
   const navigate = useNavigate();
 
+  /**
+   * Handles form submit and handles authentication
+   * @param event Event that is taken in
+   */
   const handelSubmit = async (event: any) => {
     event.preventDefault();
     const authenticated = await authenticate({
@@ -33,21 +38,34 @@ export const Login: React.FC = (): ReactElement => {
         );
         localStorage.setItem("token", JSON.stringify(response.data.jwt));
         setIsAuthenticated(true);
+        toast.success("Logged in!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         navigate("/");
       })
       .catch((error: any) => {
-        console.log(
-          "!!!Error within AuthContextProvider: authenticate: ",
-          error
+        toast.error(
+          "Error logging in! Please check your information and try again",
+          {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
         );
         setIsAuthenticated(false);
       });
-    // const handelSubmit = async (event: any) => {
-    //   event.preventDefault();
-    //   const authenticated = await authenticate({
-    //     email: loginCredentials?.email,
-    //     password: loginCredentials?.password,
-    //   });
   };
 
   return (

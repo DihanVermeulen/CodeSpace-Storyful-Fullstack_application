@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axiosInstance from "../../services/axios/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "./Signup.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export const Signup: React.FC = (): ReactElement => {
   const [signupCredentials, setSignupCredentials] = useState<any>({
@@ -13,6 +13,10 @@ export const Signup: React.FC = (): ReactElement => {
     password: null,
   });
 
+  /**
+   * Handles form submits and handles user creation
+   * @param event 
+   */
   const handelSubmit = async (event: any) => {
     event.preventDefault();
     const array = [
@@ -31,7 +35,7 @@ export const Signup: React.FC = (): ReactElement => {
       .post("/users/register", data)
       .then((response) => console.log(response))
       .catch((error) =>
-        toast("🦄 Error! Please check your information", {
+        toast.error("Error! Please check your information", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -109,16 +113,6 @@ export const Signup: React.FC = (): ReactElement => {
             required
           />
         </div>
-        <ToastContainer
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        ></ToastContainer>
         <button
           type="submit"
           style={{ marginTop: "10px" }}

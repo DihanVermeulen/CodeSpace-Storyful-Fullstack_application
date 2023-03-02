@@ -14,7 +14,7 @@
 
 .home-container-category-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
@@ -37,12 +37,17 @@
   height: 200px;
   border-radius: 20px;
   margin-bottom: 10px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
 }
 
 @media screen and (min-width: 500px) {
   .home-container-stories-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+  .home-container-category-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 }

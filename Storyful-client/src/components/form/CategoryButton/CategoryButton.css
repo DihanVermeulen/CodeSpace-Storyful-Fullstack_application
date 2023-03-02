@@ -5,6 +5,7 @@
   border-radius: 20px;
   background-color: #eeeeee;
   padding: 10px;
+  cursor: pointer;
 }
 .category-button-group {
   display: flex;
@@ -19,4 +20,10 @@
 
 .category-button-title {
   font-size: 14px;
+}
+
+.category-selected {
+  background-color: #721cff;
+  color: #ffffff;
+  box-shadow: #721cff;
 }
